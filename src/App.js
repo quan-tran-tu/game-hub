@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Container } from '@mui/material';
+import HomePage from './pages/HomePage';
+import SudokuPage from './pages/SudokuPage';
+import ChessPage from './pages/ChessPage';
+import TicTacToePage from './pages/TicTacToePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component={Link} to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Multi-Game App
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container style={{ marginTop: '20px' }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/sudoku" element={<SudokuPage />} />
+          <Route path="/chess" element={<ChessPage />} />
+          <Route path="/tic-tac-toe" element={<TicTacToePage />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 
